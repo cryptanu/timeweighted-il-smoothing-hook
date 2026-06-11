@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="680" viewBox="0 0 1920 680">
+  <rect width="1920" height="680" fill="#0b1020"/>
+  <text x="48" y="62" fill="#e5e7eb" font-family="Menlo, Monaco, Consolas, monospace" font-size="28" font-weight="700">forge coverage --ir-minimum --exclude-tests --no-match-coverage 'script|src/demo' --report summary</text>
+  <text x="48" y="120" fill="#22c55e" font-family="Menlo, Monaco, Consolas, monospace" font-size="24">Ran 3 test suites: 41 tests passed, 0 failed, 0 skipped</text>
+  <text x="48" y="176" fill="#cbd5e1" font-family="Menlo, Monaco, Consolas, monospace" font-size="21">File                                      Lines              Statements         Branches          Funcs</text>
+  <line x1="48" y1="198" x2="1872" y2="198" stroke="#334155" stroke-width="2"/>
+  <text x="48" y="238" fill="#f8fafc" font-family="Menlo, Monaco, Consolas, monospace" font-size="21">src/adapters/MorphoAdapter.sol            100.00% (22/22)   100.00% (23/23)   100.00% (4/4)   100.00% (5/5)</text>
+  <text x="48" y="286" fill="#f8fafc" font-family="Menlo, Monaco, Consolas, monospace" font-size="21">src/hooks/TimeWeightedILSmoothingHook.sol 100.00% (178/178) 100.00% (234/234) 100.00% (44/44) 100.00% (34/34)</text>
+  <text x="48" y="334" fill="#f8fafc" font-family="Menlo, Monaco, Consolas, monospace" font-size="21">src/libraries/ILMath.sol                  100.00% (14/14)   100.00% (24/24)   100.00% (2/2)   100.00% (2/2)</text>
+  <text x="48" y="382" fill="#f8fafc" font-family="Menlo, Monaco, Consolas, monospace" font-size="21">src/libraries/TenureLib.sol               100.00% (11/11)   100.00% (19/19)   100.00% (7/7)   100.00% (2/2)</text>
+  <text x="48" y="430" fill="#f8fafc" font-family="Menlo, Monaco, Consolas, monospace" font-size="21">src/rsc/TimeWeightedILSmoothingRSC.sol    100.00% (30/30)   100.00% (38/38)   100.00% (6/6)   100.00% (4/4)</text>
+  <text x="48" y="478" fill="#f8fafc" font-family="Menlo, Monaco, Consolas, monospace" font-size="21">src/test/DemoERC20.sol                    100.00% (24/24)   100.00% (19/19)   100.00% (1/1)   100.00% (6/6)</text>
+  <line x1="48" y1="508" x2="1872" y2="508" stroke="#334155" stroke-width="2"/>
+  <text x="48" y="552" fill="#22c55e" font-family="Menlo, Monaco, Consolas, monospace" font-size="24" font-weight="700">Total                                     100.00% (279/279) 100.00% (357/357) 100.00% (64/64) 100.00% (53/53)</text>
+  <text x="48" y="620" fill="#94a3b8" font-family="Menlo, Monaco, Consolas, monospace" font-size="18">Generated from the verified local coverage run on 2026-06-10.</text>
+</svg>
