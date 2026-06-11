@@ -1,0 +1,13 @@
+.env
+out/
+cache/
+broadcast/
+node_modules/
+frontend/node_modules/
+frontend/dist/
+logs/*.json
+logs/*.log
+deployments/*.local.json
+.DS_Store
+context/*
+!context/README.md
