@@ -26,6 +26,11 @@ TimeWeightedILSmoothing is a Uniswap v4 hook that reimburses part of a liquidity
 | Hook callbacks | `afterAddLiquidity`, `afterSwap`, `beforeRemoveLiquidity` |
 | Reactive Network | Yes, used for automated settlement callbacks |
 
+**Submission Links**
+
+- Presentation deck: https://gamma.app/docs/Stay-longer-suffer-less-466zm88m0wxtbi4
+- Demo video: https://youtu.be/FpTQx4jvISk
+
 > ⚛️ **Reactive Network Integration**
 >
 > TimeWeightedILSmoothing is powered by Reactive Smart Contracts (RSCs) deployed on Reactive Network. RSCs autonomously monitor on-chain events from Uniswap v4 and trigger callbacks without keepers, bots, or manual intervention. In this project, the Lasna RSC watches `ReactiveSettlementRequested` events and calls the hook back through the Unichain Sepolia callback proxy to settle an LP position.
