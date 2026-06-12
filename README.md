@@ -40,8 +40,6 @@ TimeWeightedILSmoothing is a Uniswap v4 hook that reimburses part of a liquidity
 - [Demo Run](#demo-run)
 - [Test Coverage](#test-coverage)
 - [Local Development](#local-development)
-- [Security Considerations](#security-considerations)
-- [Known Limitations & Future Work](#known-limitations--future-work)
 - [Contributing & License](#contributing--license)
 - [Acknowledgements](#acknowledgements)
 
@@ -745,39 +743,6 @@ cd frontend
 npm install
 npm run dev
 ```
-
-## Security Considerations
-
-1. **Reactive callback access control** — `settlePositionFromReactive` requires `msg.sender == callbackProxy` and payload `sender == reactiveSender`, so a relayed call must come through the configured proxy and expected RVM identity.
-2. **Tier configuration validation** — tier durations must be strictly increasing and factors cannot exceed `10_000` bps, preventing nonsensical payout schedules.
-3. **Reserve solvency cap** — payouts are capped by requested amount, LP reserve entitlement, and actual token balance, so reserve accounting cannot intentionally go negative.
-4. **Overflow and underflow protection** — Solidity `0.8.26` checked arithmetic and Uniswap `FullMath.mulDiv` are used for fixed-point multiplication and division.
-5. **Graceful Reactive degradation** — if Reactive is not configured, `requestReactiveSettlement` reverts, but direct hook lifecycle settlement and owner-directed demo settlement remain available. (Acknowledged — acceptable tradeoff because the core hook is standalone while Reactive is the automated settlement path.)
-6. **MEV surface** — a public settlement request reveals the target exit price and position key before callback execution, but the payout is capped by pre-recorded position state and reserve entitlement. (Acknowledged — acceptable tradeoff because settlement requests are explicit and demo-oriented in v1.)
-7. **Reentrancy considerations** — payout state is reduced before token transfer and the position is deleted during settlement, limiting repeat-claim risk around ERC-20 transfer behavior.
-8. **PoolManager identity model** — v4 callbacks receive router context through `sender`; the hook supports `hookData` to identify the LP instead of assuming `msg.sender` is the end user.
-9. **Morpho adapter isolation** — external supply and withdraw calls are isolated in `MorphoAdapter`, while hook accounting treats failed or unavailable withdraws as a bounded reserve-liquidity condition.
-10. **Known IL approximation** — v1 uses a full-range IL approximation for all positions. (Acknowledged — acceptable tradeoff because the hackathon scope prioritizes tenure and reserve mechanics before exact concentrated-liquidity math.)
-
-## Known Limitations & Future Work
-
-### Current Limitations
-
-- ⚠️ The v1 IL formula uses a full-range approximation and can differ from exact concentrated-liquidity IL for tight ranges.
-- ⚠️ The live proof uses a demo reserve token and direct reserve funding rather than production swap fee capture at scale.
-- ⚠️ Morpho integration is implemented and tested through an adapter, but the live E2E did not require a production Morpho market.
-- ⚠️ Reserve payouts are not guaranteed; they are capped by reserve balance and LP entitlement.
-- ⚠️ Tier configuration is owner-controlled in this hackathon version and has no timelock.
-- ⚠️ The frontend is a demo UI and simulator, not a wallet-connected production application.
-
-### Future Work
-
-- Implement exact concentrated-liquidity IL using v4 math primitives so payout estimates match tick-range behavior more closely.
-- Add dual-token reserve support so asymmetric pools can reimburse in whichever asset best matches the LP's loss profile.
-- Add governance and timelock controls for tier schedules, reserve fee share, Reactive auth, and Morpho market configuration.
-- Wire the frontend to deployed contracts for live position inspection, reserve dashboards, and settlement status tracking.
-- Add fork tests against selected Morpho Blue markets to validate adapter behavior with live market accounting.
-- Add a continuous smoothing curve instead of discrete tiers so payout changes gradually with tenure.
 
 ## Contributing & License
 
